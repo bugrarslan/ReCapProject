@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IBrandService
+    public interface IColorService
     {
-        void Add(Brand brand);
-        List<Brand> GetAll();
-        List<Brand> GetById(int brandId);
+        void Add(Color color);
     }
 }
