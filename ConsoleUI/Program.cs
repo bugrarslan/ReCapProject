@@ -12,9 +12,59 @@ namespace ConsoleUI
         {
             //CarAdded();
             //BrandAdded();
+            //ColorAdded();
+            //GetCarDetails();
             //GetAllCar();
-            ColorAdded();
-            GetCarDetails();
+            GetAllColor();
+            GetAllBrand();
+            GetAllCarByBrandId(1);
+            GetAllCarByDailyPrize(100, 200);
+            GetAllBrandByBrandId(1);
+        }
+
+        private static void GetAllBrandByBrandId(int t)
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            foreach (var brand in brandManager.GetByBrandId(t))
+            {
+                Console.WriteLine(brand.BrandName);
+            }
+        }
+
+        private static void GetAllCarByDailyPrize(int t1, int t2)
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (var car in carManager.GetAllByDailyPrice(t1, t2))
+            {
+                Console.WriteLine(car.CarName);
+            }
+        }
+
+        private static void GetAllCarByBrandId(int t)
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (var car in carManager.GetAllByBrandId(t))
+            {
+                Console.WriteLine(car.CarName);
+            }
+        }
+
+        private static void GetAllBrand()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            foreach (var brand in brandManager.GetAll())
+            {
+                Console.WriteLine(brand.BrandName);
+            }
+        }
+
+        private static void GetAllColor()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.ColorName);
+            }
         }
 
         private static void ColorAdded()
