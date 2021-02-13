@@ -13,22 +13,19 @@ namespace ConsoleUI
             //CarAdded();
             //BrandAdded();
             //ColorAdded();
-            GetCarDetails();
+            //GetCarDetails();
             //GetAllCar();
             //GetAllColor();
             //GetAllBrand();
             //GetAllCarByBrandId(1);
             //GetAllCarByDailyPrize(100, 200);
-            //GetAllBrandByBrandId(1);
+            //GetBrandByBrandId(1);
         }
 
-        private static void GetAllBrandByBrandId(int t)
+        private static void GetBrandByBrandId(int t)
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetByBrandId(t))
-            {
-                Console.WriteLine(brand.BrandName);
-            }
+            Console.WriteLine(brandManager.GetByBrandId(t));
         }
 
         private static void GetAllCarByDailyPrize(int t1, int t2)
@@ -52,7 +49,7 @@ namespace ConsoleUI
         private static void GetAllBrand()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine(brand.BrandName);
             }
@@ -61,7 +58,7 @@ namespace ConsoleUI
         private static void GetAllColor()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
+            foreach (var color in colorManager.GetAll().Data)
             {
                 Console.WriteLine(color.ColorName);
             }
@@ -71,7 +68,6 @@ namespace ConsoleUI
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             colorManager.Add(new Color { ColorId = 1, ColorName = "Gri" });
-            Console.WriteLine("Renk eklendi");
         }
 
         private static void GetCarDetails()
@@ -110,8 +106,9 @@ namespace ConsoleUI
         private static void CarAdded()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            carManager.Add(new Car { CarId = 2, BrandId = 2, CarName = "Renault", ColorId = 1, DailyPrice = 150, ModelYear = 2013, Description = "20143 model Renault Fluence" });
-            Console.WriteLine("Araç eklendi");
+            carManager.Add(new Car { CarId = 3, BrandId = 3, CarName = "Toyota", ColorId = 2, DailyPrice = 350, ModelYear = 2016, Description = "2016 model Toyota Corolla" });
+            
+            
         }
     }
 }
