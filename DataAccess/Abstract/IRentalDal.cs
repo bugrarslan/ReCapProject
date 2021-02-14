@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    interface IRentalDal : IEntityRepository<Rental>
+    public interface IRentalDal : IEntityRepository<Rental>
     {
         List<RentalDetailDto> GetRentalDetails();
     }

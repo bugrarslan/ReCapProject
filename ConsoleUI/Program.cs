@@ -1,8 +1,10 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -20,6 +22,24 @@ namespace ConsoleUI
             //GetAllCarByBrandId(1);
             //GetAllCarByDailyPrize(100, 200);
             //GetBrandByBrandId(1);
+            RentalAdded();
+            //GetAllRental();
+        }
+
+        private static void GetAllRental()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            foreach (var rent in rentalManager.GetAll().Data)
+            {
+                Console.WriteLine(rent.RentId + "/ " + rent.RentDate + "/ " + rent.ReturnDate);
+            }
+        }
+
+        private static void RentalAdded()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(new Rental { RentId = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14) ,ReturnDate = new DateTime(2021, 02, 20)});
+            Console.WriteLine();
         }
 
         private static void GetBrandByBrandId(int t)
