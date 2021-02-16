@@ -40,12 +40,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 00)
             {
                 return new ErrorDataResult<List<Car>>(Messages.Maintenancetime);
             }
 
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetAllByBrandId(int id)
@@ -58,9 +58,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
         }
 
-        public IDataResult<Car> GetByCarId(int carId)
+        public IDataResult<Car> GetByCarId(int Id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == Id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()

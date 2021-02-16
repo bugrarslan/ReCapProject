@@ -10,7 +10,7 @@ namespace Business.Abstract
     {
         IResult Add(Color color);
         IDataResult<List<Color>> GetAll();
-        IDataResult<Color> GetByColorId(int colorId);
+        IDataResult<Color> GetByColorId(int Id);
         IResult Delete(Color color);
         IResult Update(Color color);
     }

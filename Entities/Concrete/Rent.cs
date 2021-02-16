@@ -1,11 +1,11 @@
-﻿using Core.Entites;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.DTOs
+namespace Entities.Concrete
 {
-    public class RentalDetailDto : IDto
+    public class Rent : IEntity
     {
         public int RentId { get; set; }
         public int CarId { get; set; }

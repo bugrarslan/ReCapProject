@@ -22,13 +22,13 @@ namespace ConsoleUI
             //GetAllCarByBrandId(1);
             //GetAllCarByDailyPrize(100, 200);
             //GetBrandByBrandId(1);
-            RentalAdded();
+            //RentalAdded();
             //GetAllRental();
         }
 
         private static void GetAllRental()
         {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            RentManager rentalManager = new RentManager(new EfRentDal());
             foreach (var rent in rentalManager.GetAll().Data)
             {
                 Console.WriteLine(rent.RentId + "/ " + rent.RentDate + "/ " + rent.ReturnDate);
@@ -37,8 +37,8 @@ namespace ConsoleUI
 
         private static void RentalAdded()
         {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            rentalManager.Add(new Rental { RentId = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14) ,ReturnDate = new DateTime(2021, 02, 20)});
+            RentManager rentalManager = new RentManager(new EfRentDal());
+            rentalManager.Add(new Rent { RentId = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 20) });
             Console.WriteLine();
         }
 
@@ -127,8 +127,8 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
             carManager.Add(new Car { CarId = 3, BrandId = 3, CarName = "Toyota", ColorId = 2, DailyPrice = 350, ModelYear = 2016, Description = "2016 model Toyota Corolla" });
-            
-            
+
+
         }
     }
 }

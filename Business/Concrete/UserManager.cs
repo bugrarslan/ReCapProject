@@ -20,12 +20,12 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public IResult Add()
+        public IResult Add(User user)
         {
             return new SuccessResult(Messages.UserAdded);
         }
 
-        public IResult Delete()
+        public IResult Delete(User user)
         {
             return new SuccessResult(Messages.UserDeleted);
         }
@@ -45,7 +45,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetUserDetails());
         }
 
-        public IResult Update()
+        public IResult Update(User user)
         {
             return new SuccessResult(Messages.UserUpdated);
         }
