@@ -25,11 +25,14 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CarIsNotEmpty);
             }
+            _rentDal.Add(rent);
+
             return new SuccessResult(Messages.RentAdded);
         }
 
         public IResult Delete(Rent rent)
         {
+            _rentDal.Delete(rent);
             return new SuccessResult(Messages.RentDeleted);
         }
 
@@ -45,6 +48,7 @@ namespace Business.Concrete
 
         public IResult Update(Rent rent)
         {
+            _rentDal.Update(rent);
             return new SuccessResult(Messages.RentUpdated);
         }
     }

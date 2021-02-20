@@ -8,7 +8,8 @@ namespace Business.Constants
     public static class Messages
     {
         public static string CarAdded = "Araç eklendi";
-        public static string CarNameInvalid = "ürün ismi geçersiz";
+        public static string CarNameInvalid = "Araç ismi en az 2 karakter olmalıdır";
+        public static string CarNameEmpty = "Araç ismi boş bırakılamaz";
         public static string CarDeleted = "Araç silindi";
         public static string CarUpdated = "Araç güncellendi";
         public static string Maintenancetime = "Sistem bakımda";
@@ -34,5 +35,7 @@ namespace Business.Constants
         public static string CustomerDeleted = "Müşteri silindi";
         public static string CustomersListed = "Müşteriler listelendi";
         public static string CustomerUpdated = "Müşteri güncellendi";
+        public static string DailyPriceEmpty = "Araç fiyatı boş bırakılamaz";
+        public static string DailyPriceInvalid = "Araç fiyatı 0'dan büyük olmalıdır";
     }
 }
