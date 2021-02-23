@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -36,9 +37,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentDeleted);
         }
 
-        public IDataResult<List<Rent>> GetAll()
+        public IDataResult<List<RentDetailDto>> GetAll()
         {
-            return new SuccessDataResult<List<Rent>>(Messages.Rentslisted);
+            return new SuccessDataResult<List<RentDetailDto>>(Messages.Rentslisted);
         }
 
         public IDataResult<Rent> GetByRentId(int Id)

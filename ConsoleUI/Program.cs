@@ -24,6 +24,22 @@ namespace ConsoleUI
             //GetBrandByBrandId(1);
             //RentalAdded();
             //GetAllRental();
+            //UserAdded();
+            //CustomerAdded();
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Update(new Car { CarId = 2, CarName = "Renault", BrandId = 2, ColorId = 1, ModelYear = 2013, DailyPrice = 150, Description = "2013 model Renault Fluence" });
+        }
+
+        private static void CustomerAdded()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { CustomerId = 1, UserId = 1, CompanyName = "Arslan Lojistik" });
+        }
+
+        private static void UserAdded()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { UserId = 1, FirstName = "Buğra", LastName = "Arslan", Email = "bgra.arsln@hotmail.com", Password = "12345678" });
         }
 
         private static void GetAllRental()
@@ -38,7 +54,7 @@ namespace ConsoleUI
         private static void RentalAdded()
         {
             RentManager rentalManager = new RentManager(new EfRentDal());
-            rentalManager.Add(new Rent { RentId = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 20) });
+            rentalManager.Add(new Rent { RentId = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 25) });
             Console.WriteLine();
         }
 
@@ -87,7 +103,7 @@ namespace ConsoleUI
         private static void ColorAdded()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            colorManager.Add(new Color { ColorId = 1, ColorName = "Gri" });
+            colorManager.Add(new Color { ColorId = 2, ColorName = "Beyaz" });
         }
 
         private static void GetCarDetails()
