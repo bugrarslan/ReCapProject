@@ -26,7 +26,7 @@ namespace ConsoleUI
             //GetAllRental();
             //UserAdded();
             //CustomerAdded();
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
             carManager.Update(new Car { CarId = 2, CarName = "Renault", BrandId = 2, ColorId = 1, ModelYear = 2013, DailyPrice = 150, Description = "2013 model Renault Fluence" });
         }
 
@@ -66,7 +66,7 @@ namespace ConsoleUI
 
         private static void GetAllCarByDailyPrize(int t1, int t2)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
             foreach (var car in carManager.GetAllByDailyPrice(t1, t2).Data)
             {
                 Console.WriteLine(car.CarName);
@@ -75,7 +75,7 @@ namespace ConsoleUI
 
         private static void GetAllCarByBrandId(int t)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
             foreach (var car in carManager.GetAllByBrandId(t).Data)
             {
                 Console.WriteLine(car.CarName);
@@ -108,7 +108,7 @@ namespace ConsoleUI
 
         private static void GetCarDetails()
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
             var result = carManager.GetCarDetails();
             if (result.Success == true)
             {
@@ -125,7 +125,7 @@ namespace ConsoleUI
 
         private static void GetAllCar()
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
             foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("Marka :" + car.CarName + " / Günlük fiyatı : " + car.DailyPrice + " / " + car.Description);
@@ -141,7 +141,7 @@ namespace ConsoleUI
 
         private static void CarAdded()
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
             carManager.Add(new Car { CarId = 3, BrandId = 3, CarName = "Toyota", ColorId = 2, DailyPrice = 350, ModelYear = 2016, Description = "2016 model Toyota Corolla" });
 
 
