@@ -39,5 +39,9 @@ namespace Business.Constants
         public static string DailyPriceInvalid = "Araç fiyatı 0'dan büyük olmalıdır";
         public static string CarNameAlreadyExists = "Bu isimde bir araç zaten var";
         public static string CarCountOfBrandError = "Bir markada en fazla 15 araç olabilir";
+        public static string CarImageAdded = "Araç resmi eklendi";
+        public static string CarImageDeleted = "Araç resmi silindi";
+        public static string CarImageLimitExceded = "Bir aracın en fazla 5 resmi olabilir";
+        public static string CarImageUpdated = "Araç resmi güncellendi";
     }
 }
