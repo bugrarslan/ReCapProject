@@ -1,13 +1,10 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -19,14 +16,14 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from r in context.Rents
                              join c in context.Cars
-                             on r.CarId equals c.CarId
+                             on r.CarId equals c.Id
                              join cu in context.Customers
-                             on r.CustomerId equals cu.CustomerId
+                             on r.CustomerId equals cu.Id
                              select new RentDetailDto
                              {
-                                 RentId = r.RentId,
-                                 CarId = c.CarId,
-                                 CustomerId = cu.CustomerId,
+                                 RentId = r.Id,
+                                 CarId = c.Id,
+                                 CustomerId = cu.Id,
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate,
                              };

@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -27,19 +28,19 @@ namespace ConsoleUI
             //UserAdded();
             //CustomerAdded();
             CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
-            carManager.Update(new Car { CarId = 2, CarName = "Renault", BrandId = 2, ColorId = 1, ModelYear = 2013, DailyPrice = 150, Description = "2013 model Renault Fluence" });
+            carManager.Update(new Car { Id = 2, CarName = "Renault", BrandId = 2, ColorId = 1, ModelYear = 2013, DailyPrice = 150, Description = "2013 model Renault Fluence" });
         }
 
         private static void CustomerAdded()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            customerManager.Add(new Customer { CustomerId = 1, UserId = 1, CompanyName = "Arslan Lojistik" });
+            customerManager.Add(new Customer { Id = 1, UserId = 1, CompanyName = "Arslan Lojistik" });
         }
 
         private static void UserAdded()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            userManager.Add(new User { UserId = 1, FirstName = "Buğra", LastName = "Arslan", Email = "bgra.arsln@hotmail.com", Password = "12345678" });
+            userManager.Add(new User { Id = 1, FirstName = "Buğra", LastName = "Arslan", Email = "bgra.arsln@hotmail.com" });
         }
 
         private static void GetAllRental()
@@ -54,7 +55,7 @@ namespace ConsoleUI
         private static void RentalAdded()
         {
             RentManager rentalManager = new RentManager(new EfRentDal());
-            rentalManager.Add(new Rent { RentId = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 25) });
+            rentalManager.Add(new Rent { Id = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 25) });
             Console.WriteLine();
         }
 
@@ -103,7 +104,7 @@ namespace ConsoleUI
         private static void ColorAdded()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            colorManager.Add(new Color { ColorId = 2, ColorName = "Beyaz" });
+            colorManager.Add(new Color { Id = 2, ColorName = "Beyaz" });
         }
 
         private static void GetCarDetails()
@@ -135,14 +136,14 @@ namespace ConsoleUI
         private static void BrandAdded()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
-            brandManager.Add(new Brand { BrandId = 2, BrandName = "Renault" });
+            brandManager.Add(new Brand { Id = 2, BrandName = "Renault" });
             Console.WriteLine("Marka eklendi");
         }
 
         private static void CarAdded()
         {
             CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
-            carManager.Add(new Car { CarId = 3, BrandId = 3, CarName = "Toyota", ColorId = 2, DailyPrice = 350, ModelYear = 2016, Description = "2016 model Toyota Corolla" });
+            carManager.Add(new Car { Id = 3, BrandId = 3, CarName = "Toyota", ColorId = 2, DailyPrice = 350, ModelYear = 2016, Description = "2016 model Toyota Corolla" });
 
 
         }

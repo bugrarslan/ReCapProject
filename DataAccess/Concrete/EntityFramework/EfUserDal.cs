@@ -1,33 +1,24 @@
 ﻿using Core.DataAccess.EntityFramework;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
-using Entities.Concrete;
-using Entities.DTOs;
-using System;
+using DataAccess.Concrete.EntityFramework.Contexts;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, ReCapProjectContext>, IUserDal
     {
-        public List<UserDetailDto> GetUserDetails()
+        public List<OperationClaim> GetClaims(User user)
         {
-            using (ReCapProjectContext context = new ReCapProjectContext())
+            using (var context = new ReCapProjectContext())
             {
-                var result = from c in context.Customers
-                             join u in context.Users
-                             on c.UserId equals u.UserId
-                             select new UserDetailDto
-                             {
-                                 UserId = u.UserId,
-                                 CustomerId = c.CustomerId,
-                                 CompanyName = c.CompanyName,
-                                 FirstName = u.FirstName,
-                                 LastName = u.LastName,
-                                 Email = u.Email,
-                                 Password = u.Password
-                             };
+                var result = from operationClaim in context.OperationClaims
+                             join userOperationClaim in context.UserOperationClaims
+                                 on operationClaim.Id equals userOperationClaim.OperationClaimId
+                             where userOperationClaim.UserId == user.Id
+                             select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
 
             }
