@@ -13,12 +13,12 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class CarController : ControllerBase
     {
 
         ICarService _carService;
 
-        public CarsController(ICarService carService)
+        public CarController(ICarService carService)
         {
             _carService = carService;
         }

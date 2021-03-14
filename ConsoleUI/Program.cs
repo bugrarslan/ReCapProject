@@ -45,7 +45,7 @@ namespace ConsoleUI
 
         private static void GetAllRental()
         {
-            RentManager rentalManager = new RentManager(new EfRentDal());
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
             foreach (var rent in rentalManager.GetAll().Data)
             {
                 Console.WriteLine(rent.RentId + "/ " + rent.RentDate + "/ " + rent.ReturnDate);
@@ -54,8 +54,8 @@ namespace ConsoleUI
 
         private static void RentalAdded()
         {
-            RentManager rentalManager = new RentManager(new EfRentDal());
-            rentalManager.Add(new Rent { Id = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 25) });
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(new Rental { Id = 1, CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 14), ReturnDate = new DateTime(2021, 02, 25) });
             Console.WriteLine();
         }
 

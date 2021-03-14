@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Rent : IEntity
+    public class RentalDetailDto : IDto
     {
-        public int Id { get; set; }
+        public int RentId { get; set; }
         public int CarId { get; set; }
         public int CustomerId { get; set; }
         public DateTime RentDate { get; set; }

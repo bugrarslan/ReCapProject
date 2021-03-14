@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentsController : ControllerBase
+    public class ColorController : ControllerBase
     {
-        IRentService _rentService;
+        IColorService _colorService;
 
-        public RentsController(IRentService rentService)
+        public ColorController(IColorService colorService)
         {
-            _rentService = rentService;
+            _colorService = colorService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Rent rent)
+        public IActionResult Add(Color color)
         {
-            var result = _rentService.Add(rent);
+            var result = _colorService.Add(color);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Rent rent)
+        public IActionResult Delete(Color color)
         {
-            var result = _rentService.Delete(rent);
+            var result = _colorService.Delete(color);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Rent rent)
+        public IActionResult Update(Color color)
         {
-            var result = _rentService.Update(rent);
+            var result = _colorService.Update(color);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _rentService.GetAll();
+            var result = _colorService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -64,10 +64,10 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyrentid")]
-        public IActionResult GetByRentId(int id)
+        [HttpGet("getbycolorid")]
+        public IActionResult GetByColorId(int id)
         {
-            var result = _rentService.GetByRentId(id);
+            var result = _colorService.GetByColorId(id);
             if (result.Success)
             {
                 return Ok(result.Data);
