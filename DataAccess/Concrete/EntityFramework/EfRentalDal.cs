@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapProjectContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetRentDetails()
+        public List<RentalDetailDto> GetRentalDetails()
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -19,11 +19,16 @@ namespace DataAccess.Concrete.EntityFramework
                              on r.CarId equals c.Id
                              join cu in context.Customers
                              on r.CustomerId equals cu.Id
+                             join u in context.Users
+                             on cu.UserId equals u.Id
                              select new RentalDetailDto
                              {
-                                 RentId = r.Id,
-                                 CarId = c.Id,
-                                 CustomerId = cu.Id,
+                                 Id = r.Id,
+                                 CarId = r.CarId,
+                                 CarName = c.CarName,
+                                 CustomerId = r.CustomerId,
+                                 CustomerFirstName = u.FirstName,
+                                 CustomerLastName = u.LastName,
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate,
                              };

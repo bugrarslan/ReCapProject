@@ -16,7 +16,6 @@ namespace ConsoleUI
             //CarAdded();
             //BrandAdded();
             //ColorAdded();
-            //GetCarDetails();
             //GetAllCar();
             //GetAllColor();
             //GetAllBrand();
@@ -48,7 +47,7 @@ namespace ConsoleUI
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             foreach (var rent in rentalManager.GetAll().Data)
             {
-                Console.WriteLine(rent.RentId + "/ " + rent.RentDate + "/ " + rent.ReturnDate);
+                Console.WriteLine(rent.Id + "/ " + rent.RentDate + "/ " + rent.ReturnDate);
             }
         }
 
@@ -68,7 +67,7 @@ namespace ConsoleUI
         private static void GetAllCarByDailyPrize(int t1, int t2)
         {
             CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
-            foreach (var car in carManager.GetAllByDailyPrice(t1, t2).Data)
+            foreach (var car in carManager.GetByDailyPrice(t1, t2).Data)
             {
                 Console.WriteLine(car.CarName);
             }
@@ -77,7 +76,7 @@ namespace ConsoleUI
         private static void GetAllCarByBrandId(int t)
         {
             CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
-            foreach (var car in carManager.GetAllByBrandId(t).Data)
+            foreach (var car in carManager.GetByBrandId(t).Data)
             {
                 Console.WriteLine(car.CarName);
             }
@@ -105,23 +104,6 @@ namespace ConsoleUI
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             colorManager.Add(new Color { Id = 2, ColorName = "Beyaz" });
-        }
-
-        private static void GetCarDetails()
-        {
-            CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
-            var result = carManager.GetCarDetails();
-            if (result.Success == true)
-            {
-                foreach (var car in carManager.GetCarDetails().Data)
-                {
-                    Console.WriteLine(car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
         }
 
         private static void GetAllCar()

@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.UserId equals u.Id
                              select new CustomerDetailDto
                              {
-                                 CustomerId = c.Id,
+                                 Id = c.Id,
                                  CompanyName = c.CompanyName,
                                  UserId = u.Id,
                                  FirstName = u.FirstName,
