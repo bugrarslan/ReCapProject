@@ -4,18 +4,13 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
-using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
-using FluentValidation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -61,19 +56,24 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);
         }
 
-        public IDataResult<List<Car>> GetByBrandId(int id)
+        public IDataResult<List<CarDetailDto>> GetByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == id));
         }
 
-        public IDataResult<List<Car>> GetByDailyPrice(int min, int max)
+        public IDataResult<List<CarDetailDto>> GetByColorId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(p => p.ColorId == id), Messages.CarsListed);
         }
 
-        public IDataResult<Car> GetByCarId(int Id)
+        public IDataResult<List<CarDetailDto>> GetByDailyPrice(int min, int max)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == Id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.DailyPrice >= min && c.DailyPrice <= max));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetByCarId(int Id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.Id == Id));
         }
 
         public IResult Update(Car car)
@@ -102,6 +102,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+
 
         //private IResult CheckIfBrandLimitExceded()
         //{

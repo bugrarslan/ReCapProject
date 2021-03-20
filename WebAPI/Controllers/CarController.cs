@@ -47,10 +47,22 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpGet("getallbybrandid")]
-        public IActionResult GetAllByBrandId(int id)
+        [HttpGet("getbybrandid")]
+        public IActionResult GetAllByBrandId(int brandId)
         {
-            var result = _carService.GetByBrandId(id);
+            var result = _carService.GetByBrandId(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+
+        }
+
+        [HttpGet("getbycolorid")]
+        public IActionResult GetAllByColorId(int colorId)
+        {
+            var result = _carService.GetByBrandId(colorId);
             if (result.Success)
             {
                 return Ok(result);
