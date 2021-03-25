@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandController : ControllerBase
+    public class ColorsController : ControllerBase
     {
-        IBrandService _brandService;
+        IColorService _colorService;
 
-        public BrandController(IBrandService brandService)
+        public ColorsController(IColorService colorService)
         {
-            _brandService = brandService;
+            _colorService = colorService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Brand brand)
+        public IActionResult Add(Color color)
         {
-            var result = _brandService.Add(brand);
+            var result = _colorService.Add(color);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Brand brand)
+        public IActionResult Delete(Color color)
         {
-            var result = _brandService.Delete(brand);
+            var result = _colorService.Delete(color);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Brand brand)
+        public IActionResult Update(Color color)
         {
-            var result = _brandService.Update(brand);
+            var result = _colorService.Update(color);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _brandService.GetAll();
+            var result = _colorService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -64,10 +64,10 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbybrandid")]
-        public IActionResult GetByBrandId(int id)
+        [HttpGet("getbycolorid")]
+        public IActionResult GetByColorId(int id)
         {
-            var result = _brandService.GetByBrandId(id);
+            var result = _colorService.GetByColorId(id);
             if (result.Success)
             {
                 return Ok(result.Data);

@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalController : ControllerBase
+    public class BrandsController : ControllerBase
     {
-        IRentalService _rentService;
+        IBrandService _brandService;
 
-        public RentalController(IRentalService rentService)
+        public BrandsController(IBrandService brandService)
         {
-            _rentService = rentService;
+            _brandService = brandService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Rental rent)
+        public IActionResult Add(Brand brand)
         {
-            var result = _rentService.Add(rent);
+            var result = _brandService.Add(brand);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Rental rent)
+        public IActionResult Delete(Brand brand)
         {
-            var result = _rentService.Delete(rent);
+            var result = _brandService.Delete(brand);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Rental rent)
+        public IActionResult Update(Brand brand)
         {
-            var result = _rentService.Update(rent);
+            var result = _brandService.Update(brand);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _rentService.GetAll();
+            var result = _brandService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -64,10 +64,10 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyrentid")]
-        public IActionResult GetByRentId(int id)
+        [HttpGet("getbybrandid")]
+        public IActionResult GetByBrandId(int id)
         {
-            var result = _rentService.GetByRentId(id);
+            var result = _brandService.GetByBrandId(id);
             if (result.Success)
             {
                 return Ok(result.Data);

@@ -13,12 +13,12 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarController : ControllerBase
+    public class CarsController : ControllerBase
     {
 
         ICarService _carService;
 
-        public CarController(ICarService carService)
+        public CarsController(ICarService carService)
         {
             _carService = carService;
         }
@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbycolorid")]
         public IActionResult GetAllByColorId(int colorId)
         {
-            var result = _carService.GetByBrandId(colorId);
+            var result = _carService.GetByColorId(colorId);
             if (result.Success)
             {
                 return Ok(result);
